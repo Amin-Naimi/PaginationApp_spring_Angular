@@ -18,7 +18,7 @@ public class User {
     private Long id;
     private String name;
     private String email;
-    private String status;
+    private String adress;
     private String imageURl;
 
 }
