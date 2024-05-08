@@ -7,12 +7,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
     @Override
-    public Page<User> get_Users(String name, int page, int size) {
-        return userRepo.findByNameContaining(name, PageRequest.of(page,size));
+    public List<User> get_Users(String name, int page, int size) {
+        Page<User> userPage =  userRepo.findByNameContaining(name, PageRequest.of(page,size));
+        return userPage.getContent();
     }
 }
