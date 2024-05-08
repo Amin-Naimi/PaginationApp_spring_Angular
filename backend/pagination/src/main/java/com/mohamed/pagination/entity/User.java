@@ -19,8 +19,6 @@ public class User {
     private String name;
     private String email;
     private String status;
-    private String address;
-    private String phone;
     private String imageURl;
 
 }
