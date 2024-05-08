@@ -16,7 +16,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> get_Users(String name, int page, int size) {
         Page<User> userPage =  userRepo.findUsersByNameContaining(name, PageRequest.of(page,size));
-        d
         return userPage.getContent();
     }
 }
