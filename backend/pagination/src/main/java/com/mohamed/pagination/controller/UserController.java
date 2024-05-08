@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static javax.security.auth.callback.ConfirmationCallback.OK;
 
 @RestController
 @RequestMapping("/pagination")
