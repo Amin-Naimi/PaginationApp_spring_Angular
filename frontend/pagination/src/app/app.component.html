@@ -32,16 +32,16 @@
                     <th scope="col">Photo</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Address</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td><img src="placeholder.jpg" alt="Photo" /></td>
-                    <td>John Doe</td>
-                    <td>johndoe@example.com</td>
-                    <td>Active</td>
+                  <tr *ngFor="let user of usersList">
+                    <td>{{user.id}}</td>
+                    <td><img [src]="user.imageURl" alt="Photo" /></td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.adress}}</td>
                   </tr>
                 </tbody>
               </table>

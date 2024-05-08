@@ -11,6 +11,7 @@ import { UserService } from './service/user.service';
 })
 export class AppComponent implements OnInit{
  // usersState$?: Observable<{appState: String, appData?: User, error?:HttpErrorResponse}>;
+ usersList:User[] = [];
 
  constructor(private userService: UserService){}
 
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit{
     this.userService.getUsers().subscribe({
       next:(responce :any)=>{
         console.log("Responce" , responce)
+        this.usersList = responce
       },
       error:(error:any)=>{
         console.log("Error " + error)
