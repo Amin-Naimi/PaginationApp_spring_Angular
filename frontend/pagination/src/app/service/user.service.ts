@@ -10,7 +10,7 @@ export class UserService {
   private readonly API_GET_USERS :string = "http://localhost:8086/pagination/get/users"
   constructor(private http:HttpClient) { }
 
-  getUsers(name:string = '',page:number = 0,size:number = 10):Observable<User> {
+  getUsers(name:string = '',page:number = 0,size:number = 20):Observable<User> {
     return this.http.get<User>(`${this.API_GET_USERS}`,{
       params:{
         name:name,
@@ -19,4 +19,5 @@ export class UserService {
       }
     })
   }
+
 }

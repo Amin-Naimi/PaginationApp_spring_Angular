@@ -25,7 +25,21 @@ export class AppComponent implements OnInit{
         console.log("Responce" , responce)
         this.usersList = responce.userList
         let pages = responce.pageNumbers
-        this.numberOfpages = Array.from({length: responce.pageNumbers}, (_, index) => index + 1);
+        this.numberOfpages = Array.from({length: pages}, (_, index) => index);
+      },
+      error:(error:any)=>{
+        console.log("Error " + error)
+      }
+    })
+  }
+
+  goToPage(name:string | null, pageNumber?:number){
+    this.userService.getUsers(name!, pageNumber).subscribe({
+      next:(responce :any)=>{
+        console.log("Responce" , responce)
+        this.usersList = responce.userList
+        let pages = responce.pageNumbers
+        this.numberOfpages = Array.from({length: pages}, (_, index) => index);
       },
       error:(error:any)=>{
         console.log("Error " + error)
