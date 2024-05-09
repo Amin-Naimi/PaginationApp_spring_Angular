@@ -1,5 +1,6 @@
 package com.mohamed.pagination.service;
 
+import com.mohamed.pagination.dto.Response;
 import com.mohamed.pagination.entity.User;
 import com.mohamed.pagination.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +15,10 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
     @Override
-    public List<User> get_Users(String name, int page, int size) {
+    public Response get_Users(String name, int page, int size) {
         Page<User> userPage =  userRepo.findUsersByNameContaining(name, PageRequest.of(page,size));
-        return userPage.getContent();
+        int pageNumbers = userPage.getTotalPages();
+        List<User> userPageContent = userPage.getContent();
+        return new Response(userPageContent,pageNumbers);
     }
 }
