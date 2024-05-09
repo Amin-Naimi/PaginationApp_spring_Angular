@@ -19,6 +19,7 @@ public class UserServiceImpl implements UserService {
         Page<User> userPage =  userRepo.findUsersByNameContaining(name, PageRequest.of(page,size));
         int pageNumbers = userPage.getTotalPages();
         List<User> userPageContent = userPage.getContent();
-        return new Response(userPageContent,pageNumbers);
+        int currentPage = userPage.getNumber();
+        return new Response(userPageContent,pageNumbers,currentPage);
     }
 }

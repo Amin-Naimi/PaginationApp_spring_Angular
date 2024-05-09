@@ -14,4 +14,5 @@ import java.util.List;
 public class Response {
     private List<User> userList;
     private int pageNumbers;
+    private int currentPage;
 }
