@@ -12,7 +12,7 @@ import { UserService } from './service/user.service';
 export class AppComponent implements OnInit{
  // usersState$?: Observable<{appState: String, appData?: User, error?:HttpErrorResponse}>;
  usersList:User[] = [];
-
+ numberOfpages: number[] = [];
  constructor(private userService: UserService){}
 
   ngOnInit(): void {
@@ -23,7 +23,9 @@ export class AppComponent implements OnInit{
     this.userService.getUsers().subscribe({
       next:(responce :any)=>{
         console.log("Responce" , responce)
-        this.usersList = responce
+        this.usersList = responce.userList
+        let pages = responce.pageNumbers
+        this.numberOfpages = Array.from({length: responce.pageNumbers}, (_, index) => index + 1);
       },
       error:(error:any)=>{
         console.log("Error " + error)
