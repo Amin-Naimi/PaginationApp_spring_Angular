@@ -10,10 +10,9 @@ import { UserService } from './service/user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
- // usersState$?: Observable<{appState: String, appData?: User, error?:HttpErrorResponse}>;
  usersList:User[] = [];
  numberOfpages: number[] = [];
- private currentPageNumber:number = 0;
+  currentPageNumber:number = 0;
 
  constructor(private userService: UserService){}
 
@@ -44,6 +43,7 @@ export class AppComponent implements OnInit{
         let pages = responce.pageNumbers
         this.numberOfpages = Array.from({length: pages}, (_, index) => index);
         this.currentPageNumber = responce.currentPage
+
       },
       error:(error:any)=>{
         console.log("Error " + error)
@@ -66,7 +66,6 @@ export class AppComponent implements OnInit{
             return;
         }
     }
-
     const pageNumber = this.numberOfpages[currentPageIndex];
     this.goToPage(name, pageNumber);
 }

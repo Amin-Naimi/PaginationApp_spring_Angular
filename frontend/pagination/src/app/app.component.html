@@ -12,9 +12,8 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input type="search" name="name" ngModel class="form-control me-2" placeholder="Search users"
-            aria-label="Search">
+        <form #searchForm="ngForm" (ngSubmit)="goToPage(searchForm.value.name_data)" class="d-flex" role="search">
+          <input type="search" name="name_data" ngModel class="form-control me-2" placeholder="Search users" aria-label="Search">
           <button class="btn btn-success" type="submit">Search</button>
         </form>
       </div>
@@ -48,14 +47,18 @@
           </table>
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-end">
-              <li class="page-item" style="cursor: pointer;" (click)="goToNextOrPrevPage('prev','')">
+              <li class="page-item " [ngClass]="0===currentPageNumber? 'disabled' :''" style="cursor: pointer;"
+                (click)="goToNextOrPrevPage('prev',searchForm.value.name_data)">
                 <a class="page-link" aria-label="Previous">
                   <span>&laquo; Previous</span></a>
               </li>
               <li class="page-item" style="cursor: pointer;" *ngFor="let pageNumber of numberOfpages;"
-                (click)="goToPage('',pageNumber)"><a class="page-link">{{pageNumber +1}}</a>
+              [ngClass]="pageNumber === currentPageNumber? 'active' : ''"
+                (click)="goToPage(searchForm.value.name_data,pageNumber)"><a class="page-link">{{pageNumber +1}}</a>
               </li>
-              <li class="page-item" style="cursor: pointer;" (click)="goToNextOrPrevPage('next','')"><a
+              <li class="page-item" style="cursor: pointer;"
+              [ngClass]="numberOfpages.length - 1 === currentPageNumber ? 'disabled' : ''"
+              (click)="goToNextOrPrevPage('next',searchForm.value.name_data)"><a
                   class="page-link" aria-label="Next">
                   <span aria-hidden="true">Next &raquo;</span>
                 </a></li>
