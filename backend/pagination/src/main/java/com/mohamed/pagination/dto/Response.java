@@ -1,6 +1,5 @@
 package com.mohamed.pagination.dto;
 
-import com.mohamed.pagination.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +10,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Response {
-    private List<User> userList;
+public class Response<T>{
+    private List<T> userList;
     private int pageNumbers;
     private int currentPage;
 }
